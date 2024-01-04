@@ -1,7 +1,11 @@
-import React from 'react';
+import NavBar from './components/NavBar';
 
 function App() {
-    return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+    return (
+        <h1 className='w-full h-screen bg-zinc-900 font-["Satoshi Variable"]  text-white'>
+            <NavBar />
+        </h1>
+    );
 }
 
 export default App;
