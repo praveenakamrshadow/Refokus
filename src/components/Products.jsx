@@ -1,4 +1,6 @@
+import { motion } from 'framer-motion';
 import Product from './Product';
+import { useState } from 'react';
 
 function Products() {
     var products = [
@@ -31,11 +33,64 @@ function Products() {
             case: true,
         },
     ];
+
+    const [pos, setPos] = useState(0);
+    const mover = (val) => {
+        setPos(val * 23);
+    };
     return (
-        <div>
-            {products.map((val, index) => (
-                <Product key={index} val={val} />
-            ))}
+        <div className="bg-zinc-900">
+            <div className=" mt-[3.25rem] relative ">
+                {products.map((val, index) => (
+                    <Product
+                        key={index}
+                        val={val}
+                        mover={mover}
+                        count={index}
+                    />
+                ))}
+                <div className="absolute top-0  w-full h-full pointer-events-none">
+                    <motion.div
+                        initial={{ y: pos, x: '-50%' }}
+                        animate={{ y: pos + `rem` }}
+                        transition={{ ease: [0.76, 0, 0.24, 1], duration: 0.6 }}
+                        className="window absolute w-[32rem] h-[23rem] bg-white left-[44%]  overflow-hidden"
+                    >
+                        <motion.div
+                            animate={{ y: -pos + `rem` }}
+                            transition={{
+                                ease: [0.76, 0, 0.24, 1],
+                                duration: 0.5,
+                            }}
+                            className=" w-full h-full bg-sky-100"
+                        ></motion.div>
+                        <motion.div
+                            animate={{ y: -pos + `rem` }}
+                            transition={{
+                                ease: [0.76, 0, 0.24, 1],
+                                duration: 0.5,
+                            }}
+                            className=" w-full h-full bg-sky-200"
+                        ></motion.div>
+                        <motion.div
+                            animate={{ y: -pos + `rem` }}
+                            transition={{
+                                ease: [0.76, 0, 0.24, 1],
+                                duration: 0.5,
+                            }}
+                            className=" w-full h-full bg-sky-300"
+                        ></motion.div>
+                        <motion.div
+                            animate={{ y: -pos + `rem` }}
+                            transition={{
+                                ease: [0.76, 0, 0.24, 1],
+                                duration: 0.5,
+                            }}
+                            className=" w-full h-full bg-sky-400"
+                        ></motion.div>
+                    </motion.div>
+                </div>
+            </div>
         </div>
     );
 }
